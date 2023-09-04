@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.headers.common['x-api-key'] =
-  'live_uDbSslA6LeI3y7iXTQiev0SGtT4FNOpDRiWdb5Ee5Q5TidAzDBnrm6TVRjy3mtrC';
+  'live_Tz5X8XRRB8yQyOZGGy3wlOiqeAyfHz4Ij2FwuF79hLnRyfUhW2cIpmLRDDJaDwAv';
 
 function fetchBreeds() {
   return axios
