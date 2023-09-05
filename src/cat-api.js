@@ -1,39 +1,25 @@
 import axios from 'axios';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://api.thecatapi.com';
 axios.defaults.headers.common['x-api-key'] =
-  'live_Tz5X8XRRB8yQyOZGGy3wlOiqeAyfHz4Ij2FwuF79hLnRyfUhW2cIpmLRDDJaDwAv';
-
-const refs = {
-  breedList: document.querySelector('.breed-select'),
-  container: document.querySelector('.cat-info'),
-  loaderEl: document.querySelector('.loader'),
-};
+  'live_uDbSslA6LeI3y7iXTQiev0SGtT4FNOpDRiWdb5Ee5Q5TidAzDBnrm6TVRjy3mtrC';
 
 function fetchBreeds() {
-  refs.breedList.classList.replace('breed-select', 'breed-select-hidden');
   return axios
-    .get('/v1/breeds')
-    .then(response => {
-      return response.data;
+    .get('https://api.thecatapi.com/v1/breeds')
+    .then(res => {
+      return res.data;
     })
-    .catch(error => {
-      Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
+    .catch(err => {
+      console.log('1', err.response);
     });
 }
 
 function fetchCatByBreed(breedId) {
-  refs.container.classList.replace('cat-info', 'cat-info-hidden');
-  refs.loaderEl.classList.replace('loader-hidden', 'loader');
   return axios
-    .get(`/v1/images/search?breed_ids=${breedId}`)
-    .then(response => {
-      return response.data;
+    .get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+    .then(res => {
+      return res.data;
     })
-    .catch(error => {
-      Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
-    });
+    .catch(err => console.log('2', err.response));
 }
-
 export { fetchBreeds, fetchCatByBreed };
